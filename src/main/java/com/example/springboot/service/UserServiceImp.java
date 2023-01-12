@@ -4,16 +4,15 @@ import com.example.springboot.model.User;
 import com.example.springboot.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 @Service
-@Transactional
 public class UserServiceImp implements UserService{
     private final UserRepository userRepository;
     public UserServiceImp(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
     @Override
+    @Transactional
     public void add(User user) {
         userRepository.save(user);
     }
@@ -22,10 +21,12 @@ public class UserServiceImp implements UserService{
         return userRepository.findById(id);
     }
     @Override
+    @Transactional
     public void edit(Long id, User user) {
         userRepository.edit(id, user);
     }
     @Override
+    @Transactional
     public void delete(Long id) {
         userRepository.deleteById(id);
     }
